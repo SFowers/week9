@@ -1,4 +1,4 @@
-module.exports = function(db, app) {
+module.exports = function(app, db) {
     app.post('/api/add', function(req, res) {
         if(!req.body) {
             return res.sendStatus(400);

@@ -4,7 +4,7 @@ module.exports = function(app, db, ObjectID) {
             return res.sendStatus(400);
         }
         product = req.body;
-        var objectid = new ObjectID(product.objid);
+        var objectid = new ObjectID(product.id);
         const collection = db.collection('products');
         collection.updateOne({_id:objectid}, {$set:{name:product.name, description: product.description, 
             price:product.price, units: product.units}}, () => {

@@ -3,7 +3,7 @@ module.exports = function(app, db, ObjectID) {
         if(!req.body) {
             return res.sendStatus(400);
         }
-        productID = req.body.productid;
+        productID = req.body.id;
 
         var objectid = new ObjectID(productID);
         const collection = db.collection('products');

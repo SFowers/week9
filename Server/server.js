@@ -23,7 +23,7 @@ MongoClient.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true 
 
     const db = client.db(dbName);
 
-    require('./routes/add.js')(db, app);
+    require('./routes/add.js')(app, db);
     require('./routes/read.js')(app, db);
     require('./routes/update.js')(app, db, ObjectID);
     require('./routes/remove.js')(app, db, ObjectID);
@@ -32,27 +32,3 @@ MongoClient.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true 
         console.log('App is listening on port ' + port);
     });
 });
-
-
-
-
-/*
-MongoClient.connect(mongoURL, function(err, client) {
-    if (err) {return console.log("Error connecting to MongoDB: ", err)};
-    console.log("Connected mongodb");
-    const db = client.db(dbName);
-    const productsCollection = db.collection('products');
-
-    require('../App/add')(app, db);
-    require('../App/read')(app, db);
-    require('../App/update')(app, db);
-    require('../App/delete')(app, db);
-
-    client.close();
-
-    app.listen(port, () => {
-        console.log('Server is running on port ' + port);
-    });
-});
-*/
-
