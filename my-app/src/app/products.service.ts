@@ -19,6 +19,7 @@ export class ProductsService {
     return this.http.post<any>('http://localhost:3000/api/update', product);
   }
   remove(product:Product) {
+    console.log(product.id);
     return this.http.post<any>('http://localhost:3000/api/remove', product);
   }
 }

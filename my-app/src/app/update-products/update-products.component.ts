@@ -18,12 +18,20 @@ export class UpdateProductsComponent {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
 
+    console.log(this.id);
+
     this.prodserv.read().subscribe((data) => {
       this.products = data;
+      this.findProduct();
     })
 
+    
+  }
+
+  findProduct() {
     for(let i = 0; i < this.products.length; i++) {
       if(this.id == this.products[i].id) {
+        console.log("product found");
         this.product = this.products[i];
       }
     }

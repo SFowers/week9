@@ -16,14 +16,16 @@ export class ListProductsComponent {
     this.prodserv.read().subscribe((data) => {
       this.products = data;
     })
-    console.log(this.products);
+    //console.log(this.products);
   }
 
   updateProduct(id:number) {
+    console.log("sent " + id);
     this.router.navigateByUrl('/update/' + id);
   }
 
   deleteProduct(product:Product) {
+    console.log(product.id);
     if(confirm("Are you sure you want to delete this item?")) {
       this.prodserv.remove(product).subscribe((data) => {
         this.products = data;
