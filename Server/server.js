@@ -9,9 +9,11 @@ const port = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 
 const mongoURL = 'mongodb://127.0.0.1:27017/';
 const dbName = 'mydb';
+let db; 
 
 MongoClient.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client) {
     if (err) {
@@ -21,7 +23,7 @@ MongoClient.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true 
 
     console.log('Connected to MongoDB server');
 
-    const db = client.db(dbName);
+    db = client.db(dbName);
 
     require('./routes/add.js')(app, db);
     require('./routes/read.js')(app, db);
@@ -32,3 +34,8 @@ MongoClient.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true 
         console.log('App is listening on port ' + port);
     });
 });
+
+module.exports = {
+    app: app,
+    http: http
+};

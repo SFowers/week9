@@ -3,10 +3,11 @@ module.exports = function(app, db) {
         if(!req.body) {
             return res.sendStatus(400);
         }
-        product = req.body;
+        const product = req.body;
+        //console.log(req.body);
         const collection = db.collection('products');
         collection.find({'id':product.id}).count((err, count) => {
-            if(count == 0){
+            if(count == 0 && product.id){
                 collection.insertOne(product, (err, dbres) => {
                     if(err) throw err;
                     let num = dbres.insertedCount;

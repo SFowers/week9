@@ -4,14 +4,20 @@ module.exports = function(app, db, ObjectID) {
             return res.sendStatus(400);
         }
         productID = req.body.id;
-        console.log(req.body);
+        //console.log(req.body);
 
         var objectid = new ObjectID(productID);
         const collection = db.collection('products');
-        collection.deleteOne({id:productID}, (err, docs) => {
-            collection.find({}).toArray((err, data) => {
-                res.send(data);
-            })
-        })
+        collection.find({'id':productID}).count((err, count) => {
+            if(count == 1){
+                collection.deleteOne({id:productID}, (err, docs) => {
+                    collection.find({}).toArray((err, data) => {
+                        res.send(data);
+                    })
+                })
+            } else {
+                res.send({err: 'no item found'});
+            }
+        });
     });
 }

@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "mongodb": "^6.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }
