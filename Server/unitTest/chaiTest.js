@@ -101,7 +101,7 @@ describe('Server test', function() {
             chai.request(app) // Use http instead of app
                 .post('/api/update')
                 .set('Content-Type', 'application/json')
-                .send({'id': 6, 'name': 'fake', 'description': 'fakedesc', 'price': 100, 'units': '100'})
+                .send({'id': 100, 'name': 'fake', 'description': 'fakedesc', 'price': 100, 'units': '100'})
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.have.property('err');
